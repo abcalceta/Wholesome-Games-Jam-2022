@@ -24,7 +24,6 @@ func _process(delta):
 		decorateType()
 		
 func typeLetter():
-	
 	if lastTypedIndex < typeList[currentWord].length():
 		# make sure it's not a shift or another character
 		if (TypingHandler.currentKey != null) and not (TypingHandler.currentKey in [".", ",", "!"]):
@@ -39,9 +38,10 @@ func typeLetter():
 				else:
 					lastTypedIndex = 0
 			print(str(TypingHandler.currentKey), lastTypedIndex)
-		if TypingHandler.currentKey in [".", ",", "!"]:
-			# skip punctuation
-			lastTypedIndex += 1
+			
+			if lastTypedIndex < typeList[currentWord].length() and typeList[currentWord][lastTypedIndex] in [".", ",", "!"]:
+				# skip punctuation
+				lastTypedIndex += 1
 			
 			
 	elif $NextWordTimer.is_stopped():

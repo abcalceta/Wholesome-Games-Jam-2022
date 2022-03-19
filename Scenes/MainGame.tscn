@@ -5,7 +5,7 @@
 
 [node name="MainGame" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-typeList = [ "Hello there", "World", "test", "more test", "one two three", "four five six", "seven eight nine", "ten eleven twelve" ]
+typeList = [ "Hello! there!", "World", "test", "more test", "one two three", "four five six", "seven eight nine", "ten eleven twelve" ]
 
 [node name="Pos0" type="Position2D" parent="." index="0"]
 position = Vector2( 8, 214 )

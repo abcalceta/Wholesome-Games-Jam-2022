@@ -19,6 +19,11 @@ config/icon="res://icon.png"
 TypingHandler="*res://Scenes/TypingHandler.tscn"
 Transition="*res://Scenes/Transition.tscn"
 
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
 [input]
 
 alphabet={
