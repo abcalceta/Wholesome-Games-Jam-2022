@@ -12,11 +12,10 @@ func _ready():
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_pressed() and not event.is_echo():
+	if Input.is_action_just_pressed("alphabet"):
 		var typed = event as InputEventKey
 		var key = PoolByteArray([typed.unicode]).get_string_from_utf8()
 		currentKey = key
-	if not event.is_pressed():
+	elif not event.is_pressed():
 		currentKey = null
-
 

@@ -4,12 +4,14 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var typeList = [
-	"Hello",
-	"World"
+export(Array, String) var typeList = [
+	"Hello there",
+	"World",
+	"test"
 ]
 var currentWord = 0
 var lastTypedIndex = 0
+var nextScene = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,8 +19,8 @@ func _ready():
 
 func _process(delta):
 	if currentWord >= typeList.size():
-		#temporary, should be change to next level
-		get_tree().reload_current_scene()
+		#change to next level
+		Transition.transition(nextScene)
 		pass
 	else:
 		typeLetter()
@@ -30,10 +32,10 @@ func typeLetter():
 		# make sure it's not a shift or another character
 		if str(TypingHandler.currentKey).to_lower() in ["a", "b", "c", "d", "e", "f", "g", 
 		"h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", 
-		"w", "x", "y", "z"]:
-			var current = str(TypingHandler.currentKey)
+		"w", "x", "y", "z", " "]:
+			var current = str(TypingHandler.currentKey).to_lower()
 			
-			if current == typeList[currentWord][lastTypedIndex]:
+			if current == typeList[currentWord][lastTypedIndex].to_lower():
 				lastTypedIndex += 1
 			else:
 				lastTypedIndex = 0
