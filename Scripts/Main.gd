@@ -1,11 +1,12 @@
-extends Control
+extends Node
 
+var test = Dialogic.start("Test")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var typeList = [
-	"Start"
+	"Test",
+	"One",
+	"Two",
+	"Three"
 ]
 var currentWord = 0
 var lastTypedIndex = 0
@@ -14,12 +15,14 @@ var nextScene = ""
 signal finishedWord
 
 func _ready():
-	nextScene = "res://Scenes/Main.tscn"
+	$Control.visible = false
+	if get_node_or_null("DialogNode") == null:
+		test.connect("dialogic_signal", self, "dialog_listener")
+		add_child(test)
 
 func _process(delta):
 	if currentWord >= typeList.size():
 		#change to next level
-		Transition.transition(nextScene)
 		pass
 	else:
 		typeLetter()
@@ -46,6 +49,7 @@ func typeLetter():
 			lastTypedIndex += 1
 			
 			
+			
 	elif $NextWordTimer.is_stopped():
 		$NextWordTimer.start()
 		emit_signal("finishedWord")
@@ -54,13 +58,20 @@ func typeLetter():
 func decorateType() -> void:
 	var colorStart = "[color=#FFAAAA]"
 	var colorEnd =  "[/color]"
-	$VBoxContainer/VBoxContainer/HBoxContainer/RichTextLabel.bbcode_text = "[center]"+typeList[currentWord].substr(0, lastTypedIndex)+colorStart+typeList[currentWord].substr(lastTypedIndex, -1)+colorEnd+"[/center]"
+	$Control/RichTextLabel.bbcode_text = "[center]"+typeList[currentWord].substr(0, lastTypedIndex)+colorStart+typeList[currentWord].substr(lastTypedIndex, -1)+colorEnd+"[/center]"
 
-func _on_NextWordTimer_timeout():
+
+func dialog_listener(string):
+	match string:
+		"text_visable":
+			$Control.visible = true
+			pass
+
+
+func _on_Main_finishedWord():
 	lastTypedIndex = 0
-	currentWord += 1
+	if currentWord < 3:
+		currentWord += 1
+	else:
+		currentWord = 0
 	pass # Replace with function body.
-
-
-func _on_TitleScreen_finishedWord():
-	Transition.transition(nextScene)
