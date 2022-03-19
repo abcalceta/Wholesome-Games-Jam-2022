@@ -10,8 +10,9 @@ __meta__ = {
 }
 
 [node name="ToType" type="RichTextLabel" parent="."]
-margin_right = 371.0
-margin_bottom = 82.0
+margin_right = 300.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 300, 0 )
 theme = ExtResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[color=#FFFFAA] Hey there [/color]"
@@ -27,4 +28,5 @@ __meta__ = {
 wait_time = 0.2
 one_shot = true
 
+[connection signal="finishedWord" from="." to="." method="_on_TypingBase_finishedWord"]
 [connection signal="timeout" from="NextWordTimer" to="." method="_on_NextWordTimer_timeout"]

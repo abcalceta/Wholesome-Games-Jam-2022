@@ -1,9 +1,5 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 export(Array, String) var typeList = [
 	"Hello there",
 	"World",
@@ -13,9 +9,10 @@ var currentWord = 0
 var lastTypedIndex = 0
 var nextScene = ""
 
-# Called when the node enters the scene tree for the first time.
+signal finishedWord
+
 func _ready():
-	pass # Replace with function body.
+	pass 
 
 func _process(delta):
 	if currentWord >= typeList.size():
@@ -30,7 +27,7 @@ func typeLetter():
 	
 	if lastTypedIndex < typeList[currentWord].length():
 		# make sure it's not a shift or another character
-		if TypingHandler.currentKey != null:
+		if (TypingHandler.currentKey != null) and not (TypingHandler.currentKey in [".", ",", "!"]):
 			var current = str(TypingHandler.currentKey).to_lower()
 			
 			if current == typeList[currentWord][lastTypedIndex].to_lower():
@@ -41,19 +38,28 @@ func typeLetter():
 					pass
 				else:
 					lastTypedIndex = 0
-			
 			print(str(TypingHandler.currentKey), lastTypedIndex)
+		if TypingHandler.currentKey in [".", ",", "!"]:
+			# skip punctuation
+			lastTypedIndex += 1
+			
+			
 	elif $NextWordTimer.is_stopped():
 		$NextWordTimer.start()
+		emit_signal("finishedWord")
 		# when the timer times out, reset the indexes
 
 func decorateType() -> void:
 	var colorStart = "[color=#FFAAAA]"
 	var colorEnd =  "[/color]"
-	$ToType.bbcode_text = typeList[currentWord].substr(0, lastTypedIndex)+colorStart+typeList[currentWord].substr(lastTypedIndex, -1)+colorEnd
+	$ToType.bbcode_text = "[center]"+typeList[currentWord].substr(0, lastTypedIndex)+colorStart+typeList[currentWord].substr(lastTypedIndex, -1)+colorEnd+"[/center]"
 
 
 func _on_NextWordTimer_timeout():
 	lastTypedIndex = 0
 	currentWord += 1
+	pass # Replace with function body.
+
+
+func _on_TypingBase_finishedWord():
 	pass # Replace with function body.
