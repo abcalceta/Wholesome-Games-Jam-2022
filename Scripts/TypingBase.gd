@@ -30,15 +30,17 @@ func typeLetter():
 	
 	if lastTypedIndex < typeList[currentWord].length():
 		# make sure it's not a shift or another character
-		if str(TypingHandler.currentKey).to_lower() in ["a", "b", "c", "d", "e", "f", "g", 
-		"h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", 
-		"w", "x", "y", "z", " "]:
+		if TypingHandler.currentKey != null:
 			var current = str(TypingHandler.currentKey).to_lower()
 			
 			if current == typeList[currentWord][lastTypedIndex].to_lower():
 				lastTypedIndex += 1
 			else:
-				lastTypedIndex = 0
+				if lastTypedIndex != 0 and current == typeList[currentWord][lastTypedIndex-1].to_lower():
+					# add some forgiveness for accidentally doubled last character
+					pass
+				else:
+					lastTypedIndex = 0
 			
 			print(str(TypingHandler.currentKey), lastTypedIndex)
 	elif $NextWordTimer.is_stopped():
