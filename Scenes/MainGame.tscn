@@ -1,17 +1,108 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/TypingBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MainGame.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Chara3/TALKING.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Chara3/NOT-TALKING.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Chara2/character2_closed_mouth.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Chara2/character2_small_closed_mouth.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Chara2/character2_open_mouth.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Chara1/speak.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Chara1/calm.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Chara2/character2_blink.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Chara2/character2_looking_left.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Chara2/character2_looking_right.png" type="Texture" id=12]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "talking",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "talking",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "talking",
+"speed": 5.0
+} ]
 
 [node name="MainGame" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-typeList = [ "Hello! there!", "World", "test", "more test", "one two three", "four five six", "seven eight nine", "ten eleven twelve" ]
+typeList = [ " And that's why you should stay hydrated...", "Yeah man. I'll make sure I drink enough water.", "Health is important.", "Hmm...", "I, uh...", "Have I talked about the weather today?", "Hmm...", "Yes, you have.", "Oh...", " So... uh...", "Hi!", "Oh! Look who it is!", " It’s my ol' buddy Bob!", "Yeah, it’s me.", " So... uh...", "How are you doing?" ]
+dialoguePos = [ 0, 2, 2, 2, 0, 0, 0, 2, 0, -1, 1, 0, 0, 1, 1, 1, 0 ]
 
-[node name="Pos0" type="Position2D" parent="." index="0"]
-position = Vector2( 8, 214 )
+[node name="Color1" type="ColorRect" parent="." index="0"]
+margin_right = 342.0
+margin_bottom = 720.0
+color = Color( 0.921569, 0.811765, 0.811765, 1 )
 
-[node name="Pos1" type="Position2D" parent="." index="1"]
-position = Vector2( 358, 210 )
+[node name="Color2" type="ColorRect" parent="." index="1"]
+margin_left = 342.0
+margin_right = 684.0
+margin_bottom = 720.0
+color = Color( 0.839216, 1, 0.8, 1 )
 
-[node name="Pos2" type="Position2D" parent="." index="2"]
-position = Vector2( 649, 215 )
+[node name="Color3" type="ColorRect" parent="." index="2"]
+margin_left = 684.0
+margin_right = 1026.0
+margin_bottom = 720.0
+color = Color( 0.74902, 0.807843, 1, 1 )
+
+[node name="Pos0" type="Position2D" parent="." index="3"]
+position = Vector2( 0, 94 )
+
+[node name="Pos1" type="Position2D" parent="." index="4"]
+position = Vector2( 342, 94 )
+
+[node name="Pos2" type="Position2D" parent="." index="5"]
+position = Vector2( 684, 94 )
+
+[node name="ToType" parent="." index="7"]
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_text = ""
+text = ""
+
+[node name="Chara1" type="AnimatedSprite" parent="." index="9"]
+position = Vector2( 191, 466 )
+scale = Vector2( 0.779817, 0.779817 )
+frames = SubResource( 2 )
+animation = "talking"
+
+[node name="Chara2" type="AnimatedSprite" parent="." index="10"]
+visible = false
+position = Vector2( 502, 467 )
+scale = Vector2( 0.750449, 0.750449 )
+frames = SubResource( 3 )
+animation = "talking"
+
+[node name="Chara3" type="AnimatedSprite" parent="." index="11"]
+position = Vector2( 834, 506 )
+scale = Vector2( 0.561944, 0.561944 )
+frames = SubResource( 1 )
+animation = "talking"

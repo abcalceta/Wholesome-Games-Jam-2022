@@ -6,3 +6,13 @@
 [node name="MainMenu" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
 typeList = [ "Hello" ]
+
+[node name="ToType" parent="." index="1"]
+visible = true
+margin_left = 370.0
+margin_top = 529.0
+margin_right = 670.0
+margin_bottom = 590.0
+
+[node name="NextWordTimer" parent="." index="2"]
+wait_time = 0.3
