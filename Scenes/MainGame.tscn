@@ -54,7 +54,7 @@ animations = [ {
 
 [node name="MainGame" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-typeList = [ " And that's why you should stay hydrated...", "Yeah man. I'll make sure I drink enough water.", "Health is important.", "Hmm...", "I, uh...", "Have I talked about the weather today?", "Hmm...", "Yes, you have.", "Oh...", " So... uh...", "Hi!", "Oh! Look who it is!", " It’s my ol' buddy Bob!", "Yeah, it’s me.", " So... uh...", "How are you doing?" ]
+typeList = [ " And that's why you should stay hydrated...", "Yeah man. I'll make sure I drink enough water.", "Health is important.", "Hmm...", "I, uh...", "Have I talked about the weather today?", "Hmm...", "Yes, you have.", "Oh...", " So... uh...", "Hi!", "Oh! Look who it is!", " It's my ol' buddy Bob!", "Yeah, it’s me.", " So... uh...", "How are you doing?" ]
 dialoguePos = [ 0, 2, 2, 2, 0, 0, 0, 2, 0, -1, 1, 0, 0, 1, 1, 1, 0 ]
 
 [node name="Color1" type="ColorRect" parent="." index="0"]
@@ -76,14 +76,26 @@ color = Color( 0.74902, 0.807843, 1, 1 )
 
 [node name="Pos0" type="Position2D" parent="." index="3"]
 position = Vector2( 0, 94 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="pos" type="Position2D" parent="Pos0" index="0"]
+position = Vector2( 172, 187 )
 
 [node name="Pos1" type="Position2D" parent="." index="4"]
 position = Vector2( 342, 94 )
 
+[node name="pos" type="Position2D" parent="Pos1" index="0"]
+position = Vector2( 172, 187 )
+
 [node name="Pos2" type="Position2D" parent="." index="5"]
 position = Vector2( 684, 94 )
 
-[node name="ToType" parent="." index="7"]
+[node name="pos" type="Position2D" parent="Pos2" index="0"]
+position = Vector2( 158, 187 )
+
+[node name="ToType" parent="." index="8"]
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_text = ""
 text = ""

@@ -16,6 +16,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		var typed = event as InputEventKey
 		var key = PoolByteArray([typed.unicode]).get_string_from_utf8()
 		currentKey = key
+	if not event.is_pressed():
+		currentKey = null
 	
 	if Input.is_action_pressed("alphabet"):
 		# jammy hacky way of randomizing pitch

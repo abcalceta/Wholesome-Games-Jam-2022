@@ -7,12 +7,15 @@
 script = ExtResource( 1 )
 typeList = [ "Hello" ]
 
-[node name="ToType" parent="." index="1"]
-visible = true
+[node name="Enter" parent="." index="1"]
+position = Vector2( 478, 621 )
+frame = 1
+
+[node name="ToType" parent="." index="2"]
 margin_left = 370.0
 margin_top = 529.0
 margin_right = 670.0
 margin_bottom = 590.0
 
-[node name="NextWordTimer" parent="." index="2"]
+[node name="NextWordTimer" parent="." index="3"]
 wait_time = 0.3

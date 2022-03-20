@@ -9,13 +9,14 @@ var currentWord = 0
 var lastTypedIndex = 0
 var checkpoint = 0
 var nextScene = ""
-var punctuation = [".", ",", "!", "'", ";", "...", "?"]
+var punctuation = [".", ",", "!", "'", ";", "...", "?", "’"]
 signal finishedWord
 
 func _ready():
 	pass 
 
 func _process(delta):
+	
 	if currentWord >= typeList.size():
 		$ToType.visible = false
 		#change to next level
@@ -25,15 +26,24 @@ func _process(delta):
 		if not $ToType.visible:
 			$AnimationPlayer.play("show")
 			$ToType.visible = true
-		if Input.is_action_just_pressed("alphabet"):
-			typeLetter()
 		if Input.is_action_just_pressed("ui_accept"):
 			if lastTypedIndex >= typeList[currentWord].length():
 				if $NextWordTimer.is_stopped():
 					$AnimationPlayer.play("hide")
 					$NextWordTimer.start()
+		else:
+			if lastTypedIndex >= typeList[currentWord].length():
+				$Enter.show()
+			else:
+				$Enter.hide()
 		decorateType()
 		
+		
+func _input(event):
+	typeLetter()
+	
+	
+	
 func typeLetter():
 	if lastTypedIndex < typeList[currentWord].length():
 		# make sure it's not a shift or another character

@@ -39,18 +39,21 @@ func _on_TypingBase_finishedWord():
 
 func setPos():
 	if dialoguePos[currentWord] == 0:
+		$Enter.global_position = $Pos0/pos.global_position
 		$ToType.rect_position = $Pos0.position
 		TypingHandler.get_node("AudioStreamPlayer").pitch_scale = rand_range(1.5, 1.6)
 		$Chara1.play("talking")
 		$Chara2.play("default")
 		$Chara3.play("default")
 	elif dialoguePos[currentWord] == 1:
+		$Enter.global_position = $Pos1/pos.global_position
 		$ToType.rect_position = $Pos1.position
 		TypingHandler.get_node("AudioStreamPlayer").pitch_scale = rand_range(0.9, 1.0)		
 		$Chara1.play("default")
 		$Chara2.play("talking")
 		$Chara3.play("default")
 	elif dialoguePos[currentWord] == 2:
+		$Enter.global_position = $Pos2/pos.global_position
 		$ToType.rect_position = $Pos2.position
 		TypingHandler.get_node("AudioStreamPlayer").pitch_scale = rand_range(0.7, 0.8)		
 		$Chara1.play("default")
@@ -58,6 +61,7 @@ func setPos():
 		$Chara3.play("talking")
 	#specials
 	elif dialoguePos[currentWord] == -1:
+		$Enter.global_position = $Pos1/pos.global_position
 		$Chara2.show()
 		$ToType.rect_position = $Pos1.position
 		TypingHandler.get_node("AudioStreamPlayer").pitch_scale = rand_range(0.9, 1.0)		
