@@ -95,6 +95,9 @@ position = Vector2( 684, 94 )
 [node name="pos" type="Position2D" parent="Pos2" index="0"]
 position = Vector2( 158, 187 )
 
+[node name="Enter" parent="." index="7"]
+frame = 0
+
 [node name="ToType" parent="." index="8"]
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_text = ""
